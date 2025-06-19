@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Terminal de Invasão - Acesso Não Autorizado</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      background: black;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+      overflow: hidden;
+    }
+
+    body.hacked {
+      animation: tremor 0.1s infinite;
+    }
+
+    @keyframes tremor {
+      0% { transform: translate(0px, 0px); }
+      25% { transform: translate(2px, -2px); }
+      50% { transform: translate(-2px, 2px); }
+      75% { transform: translate(2px, 2px); }
+      100% { transform: translate(-2px, -2px); }
+    }
+
+    .terminal {
+      padding: 20px;
+      white-space: pre-wrap;
+      height: 100%;
+      overflow-y: auto;
+      font-size: 16px;
+    }
+
+    #start-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px 40px;
+      background: transparent;
+      border: 2px solid #0f0;
+      color: #0f0;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    #start-btn:hover {
+      background: #0f0;
+      color: #000;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="start-btn">🔓 INVADIR AGORA</button>
+  <div class="terminal" id="terminal"></div>
+  <audio id="alert-sound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
+  <audio id="typing-sound" src="https://www.soundjay.com/mechanical/keyboard-2.wav" preload="auto" loop></audio>
+
+  <script>
+    const terminal = document.getElementById("terminal");
+    const startBtn = document.getElementById("start-btn");
+    const alertSound = document.getElementById("alert-sound");
+    const typingSound = document.getElementById("typing-sound");
+
+    const mensagens = [
+      "Estabelecendo conexão com servidor secreto...",
+      "IP local identificado: 192.168.0.13",
+      "Rastreamento por GPS iniciado...",
+      "Coletando senhas armazenadas...",
+      "Acessando banco de dados do governo...",
+      "CPF e dados bancários interceptados.",
+      "Instalando Keylogger remoto...",
+      "Acesso não autorizado DETECTADO.",
+      "SISTEMA COMPROMETIDO.",
+      ">>> ACESSO CONCEDIDO - DADOS VAZADOS! <<<"
+    ];
+
+    function digitarTexto(texto, i = 0) {
+      if (i < texto.length) {
+        terminal.innerHTML += texto[i];
+        setTimeout(() => digitarTexto(texto, i + 1), 30);
+      } else {
+        terminal.innerHTML += "\n";
+      }
+    }
+
+    function iniciarSimulacao() {
+      document.body.classList.add("hacked");
+      startBtn.style.display = "none";
+      alertSound.play();
+      typingSound.play();
+
+      let delay = 1000;
+      mensagens.forEach((msg, index) => {
+        setTimeout(() => {
+          digitarTexto("> " + msg);
+          if (index === mensagens.length - 1) {
+            typingSound.pause();
+          }
+        }, delay);
+        delay += 2500;
+      });
+    }
+
+    startBtn.addEventListener("click", iniciarSimulacao);
+  </script>
+
+</body>
+</html>
