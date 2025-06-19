@@ -14,18 +14,6 @@
       overflow: hidden;
     }
 
-    body.hacked {
-      animation: tremor 0.1s infinite;
-    }
-
-    @keyframes tremor {
-      0% { transform: translate(0px, 0px); }
-      25% { transform: translate(2px, -2px); }
-      50% { transform: translate(-2px, 2px); }
-      75% { transform: translate(2px, 2px); }
-      100% { transform: translate(-2px, -2px); }
-    }
-
     .terminal {
       padding: 20px;
       white-space: pre-wrap;
@@ -94,7 +82,6 @@
     }
 
     function iniciarSimulacao() {
-      document.body.classList.add("hacked");
       startBtn.style.display = "none";
       alertSound.play();
       typingSound.play();
